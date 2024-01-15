@@ -15,6 +15,10 @@ function Game(props) {
     const [guess, setGuess] = useState("")
     const imageRef = useRef(null);
 
+    const [firstGuess, setFirstGuess] = useState("")
+    const [secondGuess, setSecondGuess] = useState("")
+    const [thirdGuess, setThirdGuess] = useState("")
+
     useEffect(() => {
         
     }, [])
@@ -61,16 +65,33 @@ function Game(props) {
         setGuess(guess)
     }
 
+    const fillGuess = () => {
+        switch(round){
+            case(1):
+            setFirstGuess(guess)
+            break;
+            case(2):
+            setSecondGuess(guess)
+            break;
+            case(3):
+            setThirdGuess(guess)
+            break;
+        }
+    }
+
     useEffect(() => {
         if (guess !== "") {
             if (guess == PokeName) {
                 console.log("Correct :)")
+                fillGuess()
                 LightenImage()
                 WinGame()
+
             }
             else {
                 console.log("Wrong :(")
                 console.log(guess)
+                fillGuess()
                 Wrong()
                 setGuess('')
             }
@@ -97,6 +118,10 @@ function Game(props) {
                     {/* <button onClick={DarkenImage}>APAGAR</button>
                     <button onClick={LightenImage}>ACENDER</button> */}
                     <br />
+                    <div style={{border:"1 px solid black"}}><span>{firstGuess}</span> </div>
+                    <div style={{border:"1 px solid black"}}><span>{secondGuess}</span> </div>
+                    <div style={{border:"1 px solid black"}}><span>{thirdGuess}</span> </div>
+
                     {currentState === "" ? (
                         <>
                             <InputPokemon names={props.nomes} GuessFunc={Guess} />

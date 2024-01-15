@@ -2,18 +2,17 @@ import React, { useState, useEffect, useRef, useContext } from 'react';
 import fetch from '../../fetch';
 import InputPokemon from '../input/input';
 import { GameContext } from '../../Context/GameContext'
+import ImageDisplay from '../imageDisplay/imageDisplay';
 
 function Game(props) {
     const { PegarPokemonAleatorio } = fetch
     const { BuscarPokemon } = fetch
 
     const { Wrong, WinGame, StartGame, currentState, NewRound, round, LoseGame } = useContext(GameContext)
-    const [image, setImage] = useState("")
     const [loading, setLoading] = useState(false)
     const [PokeName, setPokeName] = useState('')
     const [pokemonData, setPokemonData] = useState('')
     const [guess, setGuess] = useState("")
-    const imageRef = useRef(null);
 
     const [firstGuess, setFirstGuess] = useState("")
     const [secondGuess, setSecondGuess] = useState("")
@@ -23,43 +22,23 @@ function Game(props) {
         
     }, [])
 
-    const ChangeImage = async (p) => {
+    const SearchPoke = async (p) => {
         const data = await BuscarPokemon(p)
         console.log("poke:", data.name)
         setPokemonData(data)
-        setImage(data["sprites"]["front_default"])
     }
-
-    const DarkenImage = () => {
-        if (imageRef.current) {
-            imageRef.current.style.filter = 'brightness(0)';
-        }
-    }
-
-    const LightenImage = () => {
-        if (imageRef.current) {
-            imageRef.current.style.filter = "none"
-        }
-    }
-
     useEffect(() => {
         const SelecionarPokemon = async () => {
             setLoading(true)
             let p = PegarPokemonAleatorio(props.nomes)
             setPokeName(p)
-            await ChangeImage(p)
+            await SearchPoke(p)
             setLoading(false)
             await NewRound()
             StartGame()
         }
         SelecionarPokemon()
     }, []);
-
-    useEffect(() => {
-        if (image !== "") {
-            DarkenImage()
-        }
-    }, [imageRef.current])
 
     const Guess = (guess) => {
         setGuess(guess)
@@ -84,7 +63,6 @@ function Game(props) {
             if (guess == PokeName) {
                 console.log("Correct :)")
                 fillGuess()
-                LightenImage()
                 WinGame()
 
             }
@@ -104,7 +82,6 @@ function Game(props) {
     useEffect(() => {
         if (round == 4) {
             LoseGame()
-            LightenImage()
         }
     }, [round])
     return (
@@ -113,10 +90,7 @@ function Game(props) {
                 <h1>Loading...</h1>
             ) : (
                 <>
-
-                    <img src={image} ref={imageRef} />
-                    {/* <button onClick={DarkenImage}>APAGAR</button>
-                    <button onClick={LightenImage}>ACENDER</button> */}
+                    <ImageDisplay data={pokemonData} />
                     <br />
                     <div style={{border:"1 px solid black"}}><span>{firstGuess}</span> </div>
                     <div style={{border:"1 px solid black"}}><span>{secondGuess}</span> </div>

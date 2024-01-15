@@ -2,7 +2,6 @@ import api from "./api";
 
 const PegarPokemonAleatorio = (array) => {
     let randomIndex = Math.floor(Math.random() * array.length);
-    console.log("INDEX:", randomIndex)
     return array[randomIndex].toString()
 }
 

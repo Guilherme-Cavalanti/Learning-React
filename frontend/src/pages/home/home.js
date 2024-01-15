@@ -53,10 +53,8 @@ function Home() {
         if (checkGens(gens) === true) {
             let atualizado = ChangePool(gens, lista)
             atualizado = ArrumarArray(atualizado)
-            console.log(atualizado)
             setNomesGame(atualizado)
             setGame(true)
-            console.log(gens)
         }
         else {
             setGame(false)

@@ -1,8 +1,9 @@
 import { useState, useEffect, useRef, useContext } from "react"
 import { GameContext } from "../../Context/GameContext";
+import Spinner from "react-bootstrap/esm/Spinner";
 
 function ImageDisplay(props) {
-    const { currentState } = useContext(GameContext)
+    const { currentState, round } = useContext(GameContext)
     const [image, setImage] = useState("")
     const [Info, setInfo] = useState({})
     const [loading, setLoading] = useState(false)
@@ -33,10 +34,8 @@ function ImageDisplay(props) {
     }
 
     useEffect(() => {
-        console.log(image)
         DarkenImage()
         setLoading(false)
-        console.log("escureci imagem")
     }, [imageRef.current])
 
     useEffect(() => {
@@ -48,7 +47,7 @@ function ImageDisplay(props) {
     return (
         <>
             {loading ? (
-                <h1>Loading image... </h1>
+                <Spinner animation="border" role="status" />
             ) : (
                 <img src={image} ref={imageRef} />
             )}    

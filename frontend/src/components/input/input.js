@@ -1,6 +1,11 @@
 import { useState, useEffect, useContext } from "react"
 import { GameContext } from "../../Context/GameContext"
-
+import Form from "react-bootstrap/Form"
+import Container from "react-bootstrap/Container"
+import Row from "react-bootstrap/Row"
+import Col from "react-bootstrap/Col"
+import "./input.css"
+import Button from "react-bootstrap/esm/Button"
 function InputPokemon(props) {
     const [names, setNames] = useState([])
     const [pokemon, setPokemon] = useState("")
@@ -18,8 +23,8 @@ function InputPokemon(props) {
     }
 
     const choosePokemon = (event) => {
-        let pokemon = names.filter(pokemon => pokemon === event.target.innerHTML)[0]
-        console.log(pokemon)
+        let pokemon = names.filter(pokemon => pokemon == event.target.innerHTML.trim())[0]
+        //let pokemon = event.target.innerHTML
         setPokemon(pokemon)
         setNamesVisible(false)
         setTextInput(pokemon)
@@ -45,18 +50,35 @@ function InputPokemon(props) {
         else console.log("must be a poke")
     }
 
+    function handleItemKeyDown(event) {
+        console.log(event.key)
+        if (event.key === 'Enter') {
+            choosePokemon(event)
+        }
+    }
+
+
     return (
-        <div>
-                    <input onChange={changeInput} placeholder="Type pokemon name" type="text" value={textInput}></input>
-                    <div className="PokemonList" height="500px">
-                        {namesVisible && textInput != pokemon && <ul>
-                            {names.filter(pokemon => pokemon.toUpperCase().includes(textInput.toUpperCase())).map(pokemon =>
-                                <li value={pokemon} onClick={choosePokemon}>{pokemon}</li>
-                            )}
-                        </ul>
-                        }
-                    </div>
-                    <button className="guess" onClick={Guess}>Guess</button>
+        <div style={{ height: "286px" }}>
+            <Container style={{ width: "10%", "minWidth": "313px", "padding": "0%", "height": "286px" }} >
+                <Row style={{ "margin": "0" }}>
+                    <Col >
+                        <Form.Control onChange={changeInput} type="text" value={textInput} placeholder="Type pokemon name" className="InputPokemon" />
+                    </Col>
+                    <Col style={{ "width": "62.5px" }}>
+                        <Button className="guess" onClick={Guess} variant="light">Guess</Button>
+                    </Col>
+                </Row>
+                <Container style={{ "width": "80%", "zIndex": "1" }} id="DivList">
+                    {namesVisible && textInput != pokemon && <ul id="NameList">
+                        {names.filter(pokemon => pokemon.toUpperCase().includes(textInput.toUpperCase())).map(pokemon =>
+                            <li value={pokemon} onClick={choosePokemon} style={{ listStyle: "none" }} className="border" tabIndex="0" onKeyDown={handleItemKeyDown}>{pokemon} </li>
+                        )}
+                    </ul>
+                    }
+                </Container>
+            </Container>
+            <br />
         </div>
     )
 }

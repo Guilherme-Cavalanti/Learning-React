@@ -1,14 +1,18 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useContext } from 'react';
 import fetch from '../../fetch';
 import Filter from '../../components/filter/filter';
 import Changes from '../../ChangePool';
 import Game from '../../components/game/game';
+import Button from 'react-bootstrap/Button'
+import { GameContext } from '../../Context/GameContext';
 
 function Home() {
     const { PegarPokemonAleatorio } = fetch
     const { BuscarPokemon } = fetch
     const [lista, setLista] = useState([])
     const { PegarNomesPokemon } = fetch
+
+    const {currentState, ResetGame} = useContext(GameContext)
 
     const {ChangePool} = Changes
     const {ArrumarArray} = Changes
@@ -55,6 +59,7 @@ function Home() {
             atualizado = ArrumarArray(atualizado)
             setNomesGame(atualizado)
             setGame(true)
+            console.log("estado",currentState)
         }
         else {
             setGame(false)
@@ -63,25 +68,17 @@ function Home() {
 
     const closeGame = () => {
         setGame(false)
+        ResetGame()
     }
     return (
         <>
             <h1>TESTE</h1>
             {!game && <Filter Apply={Apply} />}
-            {/* {loading ? (
-                <h1>Loading...</h1>
-            ) : (
-                <>
-                    
-                    <img src={image} ref={imageRef} />
-                    <button onClick={DarkenImage}>APAGAR</button>
-                    <button onClick={LightenImage}>ACENDER</button>
-                </>
-            )} */}
             {game ? (
                 <>
                     <Game nomes={nomesGame} />
-                    <button onClick={closeGame}>Fechar</button>
+                    {currentState === "" && <Button  variant="info" onClick={closeGame}>Close</Button>}
+                    {(currentState === "win" || currentState === "lose") && <Button onClick={closeGame}>New Game</Button>}
                 </>
             ) : (
                 <h1>Lets play bro</h1>

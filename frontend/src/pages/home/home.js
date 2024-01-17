@@ -81,7 +81,7 @@ function Home() {
                     {(currentState === "win" || currentState === "lose") && <Button onClick={closeGame}>New Game</Button>}
                 </>
             ) : (
-                <h1>Lets play bro</h1>
+                <h1>Press apply when ready</h1>
             )}
         </>
     )

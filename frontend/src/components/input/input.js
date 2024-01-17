@@ -12,7 +12,8 @@ function InputPokemon(props) {
     const [textInput, setTextInput] = useState("")
     const [namesVisible, setNamesVisible] = useState(false)
     const { round, currentState } = useContext(GameContext)
-
+    const [alert, setAlert] = useState(false)
+ 
     useEffect(() => {
         setNames(props.names)
     }, [])
@@ -46,9 +47,14 @@ function InputPokemon(props) {
             props.GuessFunc(
                 pokemon
             )
+            setAlert(false)
         }
-        else console.log("must be a poke")
+        else {
+            console.log("must be a poke")
+            setAlert(true)
+        }
     }
+        
 
     function handleItemKeyDown(event) {
         console.log(event.key)
@@ -72,11 +78,12 @@ function InputPokemon(props) {
                 <Container style={{ "width": "80%", "zIndex": "1" }} id="DivList">
                     {namesVisible && textInput != pokemon && <ul id="NameList">
                         {names.filter(pokemon => pokemon.toUpperCase().includes(textInput.toUpperCase())).map(pokemon =>
-                            <li value={pokemon} onClick={choosePokemon} style={{ listStyle: "none" }} className="border" tabIndex="0" onKeyDown={handleItemKeyDown}>{pokemon} </li>
+                            <li value={pokemon} onClick={choosePokemon} style={{ listStyle: "none" }} className="border" tabIndex="0" onKeyDown={handleItemKeyDown} key={pokemon}>{pokemon} </li>
                         )}
                     </ul>
                     }
                 </Container>
+                {alert && <span className="text-danger">*must be a pokemon</span>}
             </Container>
             <br />
         </div>

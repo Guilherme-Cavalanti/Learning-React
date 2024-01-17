@@ -1,5 +1,8 @@
 import { useState, useEffect } from 'react'
-import App from '../../App'
+import Form from "react-bootstrap/Form"
+import Container from "react-bootstrap/Container"
+import Button from "react-bootstrap/Button"
+
 
 
 function Filter(props) {
@@ -58,47 +61,22 @@ function Filter(props) {
 
     return (
         <div>
-            <div className='selects'>
-                <label>
-                    Gen 1:
-                </label>
-                <input type="checkbox" checked={gen1} onChange={() => HandleChange(1)} />
+            <Container className='border-top border-bottom mb-3' style={{"width": "10%", "minWidth": "450px", display: "inline-block"}}>
+                <Form.Check type="checkbox" checked={gen1} onChange={() => HandleChange(1)} label="Gen 1" inline reverse/>
+                <Form.Check type="checkbox" checked={gen2} onChange={() => HandleChange(2)} label="Gen 2" inline reverse/>
+                <Form.Check type="checkbox" checked={gen3} onChange={() => HandleChange(3)} label="Gen 3" inline reverse/>
+                <Form.Check type="checkbox" checked={gen4} onChange={() => HandleChange(4)} label="Gen 4" inline reverse/>
+                <Form.Check type="checkbox" checked={gen5} onChange={() => HandleChange(5)} label="Gen 5" inline reverse/>
+            </Container>
 
-
-
-                <label>
-                    Gen 2:
-                </label>
-
-                <input type="checkbox" checked={gen2} onChange={() => HandleChange(2)} />
-
-                <label>
-                    Gen 3:
-                </label>
-                <input type="checkbox" checked={gen3} onChange={() => HandleChange(3)} />
-
-
-                <label>
-                    Gen 4:
-                </label>
-                <input type="checkbox" checked={gen4} onChange={() => HandleChange(4)} />
-
-
-                <label>
-                    Gen 5:
-                </label>
-                <input type="checkbox" checked={gen5} onChange={() => HandleChange(5)} />
-
-            </div>
-
-            <div className='botoes-filter'>
-                <button className='btn-filter' onClick={Apply}>
-                    Aplicar
-                </button>
-                <button className='btn-filter' onClick={Apagar}>
-                    Apagar
-                </button>
-            </div>
+            <Container className='botoes-filter d-flex' style={{"justifyContent":"space-evenly",  "minWidth":"400px", width: "7%"}}>
+                <Button className='' variant="info"onClick={Apply}>
+                    Apply
+                </Button>
+                <Button className='btn-filter' onClick={Apagar} variant='dark'>
+                    Erase
+                </Button>
+            </Container>
         </div>
     )
 

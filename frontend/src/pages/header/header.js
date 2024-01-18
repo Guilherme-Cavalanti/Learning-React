@@ -8,9 +8,9 @@ import Nav from "react-bootstrap/Nav"
 function Header() {
 
     return (
-        <Container style={{ "width": "100%", maxWidth: "700px" }}>
-            <Navbar expand="lg" className="bg-body-tertiary" >
+            <Navbar expand="lg" className="bg-body-tertiary"  style={{ "width": "100%" , margin:"0", minWidth:"600px"}}>
                 <Container>
+                    <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="me-auto" style={{ "justifyContent": "space-evenly", "width": "100%" }}>
                             <Nav.Link href="/">Home</Nav.Link>
@@ -20,7 +20,6 @@ function Header() {
                     </Navbar.Collapse>
                 </Container>
             </Navbar>
-        </Container>
     )
 }
 

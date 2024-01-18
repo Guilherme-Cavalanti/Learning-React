@@ -8,10 +8,11 @@ import Nav from "react-bootstrap/Nav"
 function Header() {
 
     return (
-            <Navbar expand="lg" className="bg-body-tertiary" style={{"width":"100%"}}>
+        <Container style={{ "width": "100%", maxWidth: "700px" }}>
+            <Navbar expand="lg" className="bg-body-tertiary" >
                 <Container>
                     <Navbar.Collapse id="basic-navbar-nav">
-                        <Nav className="me-auto" style={{"justifyContent":"space-evenly", "width":"100%"}}>
+                        <Nav className="me-auto" style={{ "justifyContent": "space-evenly", "width": "100%" }}>
                             <Nav.Link href="/">Home</Nav.Link>
                             <Nav.Link href="/about">About</Nav.Link>
                             <Nav.Link href="/learn">Learn</Nav.Link>
@@ -19,6 +20,7 @@ function Header() {
                     </Navbar.Collapse>
                 </Container>
             </Navbar>
+        </Container>
     )
 }
 

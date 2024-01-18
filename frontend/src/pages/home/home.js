@@ -25,6 +25,7 @@ function Home() {
             setLista(res)
         }
         SelecionarPokemon()
+        ResetGame()
     }, []);
 
     const [gens, setGens] = useState({})
@@ -73,7 +74,7 @@ function Home() {
     return (
         <>
             <h1>TESTE</h1>
-            {!game && <Filter Apply={Apply} />}
+            {(!game) && <Filter Apply={Apply} />}
             {game ? (
                 <>
                     <Game nomes={nomesGame} />

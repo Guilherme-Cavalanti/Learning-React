@@ -37,7 +37,6 @@ function Game(props) {
 
     const SearchPoke = async (p) => {
         const data = await BuscarPokemon(p)
-        console.log("poke:", data.name)
         setPokemonData(data)
     }
     useEffect(() => {

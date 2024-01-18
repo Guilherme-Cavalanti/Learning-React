@@ -60,7 +60,6 @@ function Home() {
             atualizado = ArrumarArray(atualizado)
             setNomesGame(atualizado)
             setGame(true)
-            console.log("estado",currentState)
         }
         else {
             setGame(false)
@@ -73,7 +72,7 @@ function Home() {
     }
     return (
         <>
-            <h1>TESTE</h1>
+            <h1>Home Page</h1>
             {(!game) && <Filter Apply={Apply} />}
             {game ? (
                 <>

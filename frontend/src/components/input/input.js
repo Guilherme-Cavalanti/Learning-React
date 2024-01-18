@@ -50,14 +50,12 @@ function InputPokemon(props) {
             setAlert(false)
         }
         else {
-            console.log("must be a poke")
             setAlert(true)
         }
     }
         
 
     function handleItemKeyDown(event) {
-        console.log(event.key)
         if (event.key === 'Enter') {
             choosePokemon(event)
         }

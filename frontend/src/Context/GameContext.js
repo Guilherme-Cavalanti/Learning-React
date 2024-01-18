@@ -29,7 +29,6 @@ const GameFunctions = ({children}) => {
         setRound(1)
     }
     useEffect(()=> {
-        console.log("Round:",round)
     },[round])
     return (
         <GameContext.Provider value={{round,Wrong, NewRound, WinGame, LoseGame, StartGame, currentState, ResetGame}}>

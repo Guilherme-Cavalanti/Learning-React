@@ -28,7 +28,6 @@ function InfoDisplay(props) {
     
     useEffect(() => {
         setData(props.data)
-        console.log(props.data)
     }, [])
 
     function GetHigherStatus(stats) {

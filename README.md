@@ -25,4 +25,3 @@ The application is deployed and can be accessed at the following link:
 
 *Note: The design may appear differently on mobile devices. For better visualization, it is recommended to view the desktop version. You can usually find an option to switch to the desktop version in your mobile browser settings.*
 
-Pau

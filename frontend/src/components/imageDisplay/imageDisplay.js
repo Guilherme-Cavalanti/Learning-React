@@ -43,13 +43,12 @@ function ImageDisplay(props) {
             LightenImage()
         }
     }, [currentState])
-
     return (
         <>
             {loading ? (
                 <Spinner animation="border" role="status" />
             ) : (
-                <img src={image} ref={imageRef} />
+                <img src={image} ref={imageRef} style={{height:"261px"}}/>
             )}    
         </>
     )

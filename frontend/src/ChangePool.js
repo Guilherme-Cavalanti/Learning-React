@@ -37,5 +37,6 @@ const ArrumarArray = (array) => {
 }
 export default {
     ChangePool,
-    ArrumarArray
+    ArrumarArray,
+    capitalizeFirstLetter
 }

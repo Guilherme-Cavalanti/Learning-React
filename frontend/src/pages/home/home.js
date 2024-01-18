@@ -78,7 +78,7 @@ function Home() {
                 <>
                     <Game nomes={nomesGame} />
                     {currentState === "" && <Button  variant="info" onClick={closeGame}>Close</Button>}
-                    {(currentState === "win" || currentState === "lose") && <Button onClick={closeGame}>New Game</Button>}
+                    {(currentState === "win" || currentState === "lose") && <Button onClick={closeGame} className='mt-3'>New Game</Button>}
                 </>
             ) : (
                 <h1>Press apply when ready</h1>
